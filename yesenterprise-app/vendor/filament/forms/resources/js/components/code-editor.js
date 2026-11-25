@@ -1,0 +1,231 @@
+import * as CodeMirrorState from '@codemirror/state'
+import * as CodeMirrorView from '@codemirror/view'
+import * as CodeMirrorLanguage from '@codemirror/language'
+import { EditorView, basicSetup } from 'codemirror-v6'
+import { indentWithTab } from '@codemirror/commands'
+import { oneDark } from '@codemirror/theme-one-dark'
+import { keymap } from '@codemirror/view'
+import { observeFieldAccessibility } from '../utilities/field-accessibility.js'
+
+import { cpp } from '@codemirror/lang-cpp'
+import { css } from '@codemirror/lang-css'
+import { go } from '@codemirror/lang-go'
+import { html } from '@codemirror/lang-html'
+import { java } from '@codemirror/lang-java'
+import { javascript } from '@codemirror/lang-javascript'
+import { json } from '@codemirror/lang-json'
+import { markdown } from '@codemirror/lang-markdown'
+import { php } from '@codemirror/lang-php'
+import { python } from '@codemirror/lang-python'
+import { sql } from '@codemirror/lang-sql'
+import { xml } from '@codemirror/lang-xml'
+import { yaml } from '@codemirror/lang-yaml'
+
+const { EditorState, Compartment } = CodeMirrorState
+
+export default function codeEditorFormComponent({
+    canWrap,
+    isDisabled,
+    isLive,
+    isLiveDebounced,
+    isLiveOnBlur,
+    label,
+    liveDebounce,
+    language,
+    state,
+}) {
+    return {
+        editor: null,
+        languageCompartment: new Compartment(),
+        themeCompartment: new Compartment(),
+        accessibilityCompartment: new Compartment(),
+        accessibilityObserver: null,
+        isDocChanged: false,
+        state,
+
+        init() {
+            const languageExtension = this.getLanguageExtension()
+
+            const debouncedCommit = Alpine.debounce(() => {
+                if (this.editor) {
+                    this.$wire.commit()
+                }
+            }, liveDebounce ?? 300)
+
+            this.editor = new EditorView({
+                parent: this.$refs.editor,
+                state: EditorState.create({
+                    doc: this.state,
+                    extensions: [
+                        basicSetup,
+                        this.accessibilityCompartment.of([]),
+                        keymap.of([indentWithTab]),
+                        ...(label
+                            ? [
+                                  EditorView.contentAttributes.of({
+                                      'aria-label': label,
+                                  }),
+                              ]
+                            : []),
+                        ...(canWrap ? [EditorView.lineWrapping] : []),
+                        EditorState.readOnly.of(isDisabled),
+                        EditorView.editable.of(!isDisabled),
+                        EditorView.updateListener.of((viewUpdate) => {
+                            if (!viewUpdate.docChanged) {
+                                return
+                            }
+                            this.isDocChanged = true
+                            this.state = viewUpdate.state.doc.toString()
+                            if (!isLiveOnBlur && (isLive || isLiveDebounced)) {
+                                debouncedCommit()
+                            }
+                        }),
+                        EditorView.domEventHandlers({
+                            blur: (event, view) => {
+                                if (isLiveOnBlur && this.isDocChanged) {
+                                    this.$wire.$commit()
+                                }
+                            },
+                        }),
+                        this.languageCompartment.of(languageExtension ?? []),
+                        this.themeCompartment.of(this.getThemeExtensions()),
+                    ],
+                }),
+            })
+
+            this.accessibilityObserver = observeFieldAccessibility(
+                this.$el,
+                (attributes) => {
+                    this.editor.dispatch({
+                        effects: this.accessibilityCompartment.reconfigure(
+                            EditorView.contentAttributes.of(
+                                Object.fromEntries(
+                                    Object.entries(attributes).filter(
+                                        ([, value]) => value !== null,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    })
+                },
+            )
+
+            this.$watch('state', () => {
+                if (this.state === undefined) {
+                    return
+                }
+
+                if (this.editor.state.doc.toString() === this.state) {
+                    return
+                }
+
+                this.editor.dispatch({
+                    changes: {
+                        from: 0,
+                        to: this.editor.state.doc.length,
+                        insert: this.state,
+                    },
+                })
+            })
+
+            this.themeObserver = new MutationObserver(() => {
+                this.editor.dispatch({
+                    effects: this.themeCompartment.reconfigure(
+                        this.getThemeExtensions(),
+                    ),
+                })
+            })
+
+            this.themeObserver.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['class'],
+            })
+
+            if (language && !languageExtension) {
+                this.loadLanguageExtension()
+            }
+
+            this.$dispatch('async-component-ready')
+        },
+
+        isDarkMode() {
+            return document.documentElement.classList.contains('dark')
+        },
+
+        getThemeExtensions() {
+            return this.isDarkMode() ? [oneDark] : []
+        },
+
+        getLanguageExtension() {
+            if (!language) {
+                return null
+            }
+
+            const extensions = {
+                cpp,
+                css,
+                go,
+                html,
+                java,
+                javascript,
+                json,
+                markdown,
+                php,
+                python,
+                sql,
+                xml,
+                yaml,
+            }
+
+            return Object.prototype.hasOwnProperty.call(extensions, language)
+                ? extensions[language]()
+                : null
+        },
+
+        async loadLanguageExtension() {
+            const editor = this.editor
+
+            try {
+                const url = new URL(language, document.baseURI).href
+                const factory = (await import(url)).default
+
+                if (this.editor !== editor || !this.$el.isConnected) {
+                    return
+                }
+
+                const extension = await factory({
+                    state: CodeMirrorState,
+                    view: CodeMirrorView,
+                    language: CodeMirrorLanguage,
+                })
+
+                if (this.editor !== editor || !this.$el.isConnected) {
+                    return
+                }
+
+                editor.dispatch({
+                    effects: this.languageCompartment.reconfigure(extension),
+                })
+            } catch (error) {
+                console.error(
+                    `Failed to load code editor language from [${language}]:`,
+                    error,
+                )
+            }
+        },
+
+        destroy() {
+            this.accessibilityObserver?.disconnect()
+
+            if (this.themeObserver) {
+                this.themeObserver.disconnect()
+                this.themeObserver = null
+            }
+
+            if (this.editor) {
+                this.editor.destroy()
+                this.editor = null
+            }
+        },
+    }
+}

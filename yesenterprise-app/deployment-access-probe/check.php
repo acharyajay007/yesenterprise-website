@@ -1,0 +1,1 @@
+<?php http_response_code(409); echo 'PRIVATE_ACCESS_PROBE';
