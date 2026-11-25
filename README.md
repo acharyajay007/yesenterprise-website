@@ -3,6 +3,13 @@
 Laravel 13 / Filament 5 on PHP 8.3, with an Industro-based public website,
 MariaDB and Mailpit for Docker development.
 
+For Hostinger Git deployment restricted to `public_html`, use the
+[protected production layout](docs/HOSTINGER-DEPLOYMENT.md#protected-public_html-layout-for-git-deployment).
+`.\scripts\Deploy-Website.ps1 -PrepareGitRelease` builds a complete production
+snapshot without credentials, private uploads, database changes or a Git push.
+Deploy its dedicated production branch, not the source-only `main`; verify
+hosting protection and untracked-data preservation before migrating the live site.
+
 The owner-supplied logo is displayed beside **Yes Enterprise / Rajkot** in the
 public header/footer and admin panel, and is also used as the favicon.
 

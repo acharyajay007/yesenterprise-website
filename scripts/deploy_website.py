@@ -20,13 +20,14 @@ from urllib.parse import urlsplit
 
 REPO = Path(__file__).resolve().parent.parent
 RUNTIME_DIRECTORIES = ("app", "bootstrap", "config", "database", "lang", "resources", "routes", "public")
+ACCESS_PROBE_EXTENSIONS = ("env", "json", "php", "log", "pdf", "txt", "webp", "css", "js")
 
 
 class DeploymentError(Exception):
     pass
 
 
-def read_credentials(path):
+def read_credentials(path, required=("mysql", "ftp")):
     sections, current = {}, None
     for line in path.read_text(encoding="utf-8-sig").splitlines():
         parts = re.split(r"[:=]", line.strip(), maxsplit=1)
@@ -38,9 +39,19 @@ def read_credentials(path):
         elif current and len(parts) == 2:
             sections[current][key] = parts[1].strip()
     for section, fields in {"mysql": ("host", "port", "database", "username", "password"), "ftp": ("hostname", "port", "directory", "username", "password")}.items():
+        if section not in required:
+            continue
         if any(not sections.get(section, {}).get(field) for field in fields):
             raise DeploymentError("Missing required " + section + " configuration.")
-    return {section: sections[section] for section in ("mysql", "ftp")}
+    return {section: sections[section] for section in required}
+
+
+def index_layout(content):
+    if b"../yesenterprise-app/storage/framework/maintenance.php" in content:
+        return "legacy"
+    if b"yesenterprise-app/storage/framework/maintenance.php" in content:
+        return "protected"
+    raise DeploymentError("Existing entry point does not use a supported Laravel layout.")
 
 
 def quote_option(value):
@@ -53,10 +64,18 @@ def digest(content):
     return hashlib.sha256(content).hexdigest()
 
 
+def maintenance_marker(token):
+    return ("<?php\n// Deployment " + token + "\nhttp_response_code(503);\nheader('Retry-After: 60');\n"
+            "header('Content-Type: text/html; charset=UTF-8');\necho '<!doctype html><html lang=\"en\"><title>Website update</title>"
+            "<h1>Website update in progress</h1><p>Please try again shortly.</p></html>';\nexit;\n").encode()
+
+
 def preserved(path, area, reuse_vendor=False):
     if area == "private":
-        return path == ".env" or path.startswith(("storage/", "public/")) or (reuse_vendor and path.startswith("vendor/"))
-    return path.startswith("media/uploads/")
+        return (path == ".env" or path.startswith((".env.", "storage/", "public/", "deployment-access-probe/"))
+                or (path.startswith("bootstrap/cache/") and posixpath.basename(path) not in {".gitignore", "packages.php", "services.php"})
+                or (reuse_vendor and path.startswith("vendor/")))
+    return path in {".env", "storage"} or path.startswith((".env.", "media/uploads/", ".git/", ".deploy-", "storage/"))
 
 
 class SecureFiles:
@@ -76,9 +95,10 @@ class SecureFiles:
             if posixpath.basename(self.public) != "public_html":
                 raise DeploymentError("Configured FTPS directory must identify the existing public_html directory.")
             self.root = posixpath.dirname(self.public)
-            self.private = posixpath.join(self.root, "yesenterprise-app")
+            self.layout = index_layout(self.get(self.public + "/index.php"))
+            self.private = posixpath.join(self.public if self.layout == "protected" else self.root, "yesenterprise-app")
             if not self.exists(self.private + "/.env") or not self.exists(self.private + "/vendor/autoload.php"):
-                raise DeploymentError("Existing private application/environment is inaccessible; do not relocate secrets into public_html.")
+                raise DeploymentError("Existing application/environment is inaccessible; complete and verify the documented layout migration first.")
         except (OSError, ftplib.Error, DeploymentError):
             self.client.close()
             raise
@@ -219,27 +239,30 @@ class Build:
             raise DeploymentError("Remove these named local deployment helpers: " + ", ".join(failed))
 
 
-def public_index(content):
+def public_index(content, layout="legacy"):
     text = content.decode()
     if "__DIR__.'/../vendor/autoload.php'" not in text or "$app->handleRequest(Request::capture());" not in text:
         raise DeploymentError("Public bootstrap changed; update the deployment layout intentionally.")
-    text = text.replace("__DIR__.'/../", "__DIR__.'/../yesenterprise-app/")
+    if layout not in {"legacy", "protected"}:
+        raise DeploymentError("Unknown deployment layout.")
+    prefix = "../yesenterprise-app/" if layout == "legacy" else "yesenterprise-app/"
+    text = text.replace("__DIR__.'/../", "__DIR__.'/" + prefix)
     text = text.replace("$app->handleRequest(Request::capture());", "$app->usePublicPath(__DIR__);\n$app->handleRequest(Request::capture());")
     return text.encode()
 
 
-def collect_files(output, reuse_vendor):
+def collect_files(output, reuse_vendor, layout="legacy"):
     files = {}
     for area in ("private", "public"):
         with zipfile.ZipFile(output / (area + ".zip")) as archive:
             for entry in archive.infolist():
                 if entry.is_dir() or preserved(entry.filename, area, reuse_vendor):
                     continue
-                if entry.filename.startswith("/") or ".." in entry.filename.split("/"):
+                if entry.filename.startswith("/") or ".." in entry.filename.split("/") or "\\" in entry.filename or ":" in entry.filename:
                     raise DeploymentError("Unsafe package path.")
                 content = archive.read(entry)
                 if area == "public" and entry.filename == "index.php":
-                    content = public_index(content)
+                    content = public_index(content, layout)
                 files[area + "/" + entry.filename] = content
     return files
 
@@ -268,7 +291,7 @@ def plan_files(remote, files, state):
     return changes
 
 
-def health_check(url):
+def health_check(url, protected=False):
     if urlsplit(url).scheme != "https":
         raise DeploymentError("Live verification requires HTTPS.")
     for path in ("/up", "/en"):
@@ -276,6 +299,147 @@ def health_check(url):
             content = response.read()
             if response.status != 200 or (path == "/en" and b"Yes Enterprise" not in content):
                 raise DeploymentError("Live deployment health check failed.")
+    if protected:
+        paths = ["/yesenterprise-app/.env", "/yesenterprise-app/composer.json",
+                 "/yesenterprise-app/vendor/autoload.php", "/yesenterprise-app/storage/logs/laravel.log",
+                 "/.git/config", "/.env"]
+        paths.extend("/yesenterprise-app/deployment-access-probe/check." + extension for extension in ACCESS_PROBE_EXTENSIONS)
+        for path in paths:
+            try:
+                with urllib.request.urlopen(url.rstrip("/") + path, timeout=45):
+                    raise DeploymentError("Protected application paths are not returning HTTP 403; do not publish or copy secrets.")
+            except urllib.error.HTTPError as error:
+                if error.code != 403:
+                    raise DeploymentError("Protected application paths must return HTTP 403; do not publish or copy secrets.") from None
+
+
+def write_protection_archive(output, files):
+    with zipfile.ZipFile(output / ".deploy-protection.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr(".htaccess", files["public/.htaccess"])
+        archive.writestr("yesenterprise-app/.htaccess", files["private/.htaccess"])
+        for extension in ACCESS_PROBE_EXTENSIONS:
+            content = (b"<?php http_response_code(409); echo 'PRIVATE_ACCESS_PROBE';"
+                       if extension == "php" else b"PRIVATE_ACCESS_PROBE_NOT_A_SECRET")
+            archive.writestr("yesenterprise-app/deployment-access-probe/check." + extension, content)
+
+
+def export_git_release(output, files):
+    required = {"private/.htaccess", "private/vendor/autoload.php", "public/.htaccess", "public/index.php",
+                "public/build/manifest.json"}
+    if not required.issubset(files):
+        raise DeploymentError("Production Git release is missing protection, dependencies or built assets.")
+    if files["private/.htaccess"].strip() != b"Require all denied":
+        raise DeploymentError("Private application protection is missing.")
+    if b"RewriteRule ^yesenterprise-app(?:/|$) - [F,L,NC]" not in files["public/.htaccess"]:
+        raise DeploymentError("Root application protection is missing.")
+    if index_layout(files["public/index.php"]) != "protected":
+        raise DeploymentError("Git entry point must load the protected application folder.")
+    target = output / "git-release"
+    target.mkdir()
+    for name, content in files.items():
+        area, relative = name.split("/", 1)
+        if area not in {"private", "public"} or preserved(relative, area) or relative.startswith("/") or ".." in relative.split("/") or "\\" in relative or ":" in relative:
+            raise DeploymentError("Git release contains an unsafe or runtime-owned path.")
+        if posixpath.basename(relative) == ".gitignore":
+            continue
+        path = target / ("yesenterprise-app" if area == "private" else "") / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(content)
+    (target / ".gitignore").write_text(
+        "/yesenterprise-app/.env\n/yesenterprise-app/.env.*\n/yesenterprise-app/storage/\n"
+        "/yesenterprise-app/deployment-access-probe/\n"
+        "/yesenterprise-app/bootstrap/cache/*.php\n"
+        "!/yesenterprise-app/bootstrap/cache/packages.php\n!/yesenterprise-app/bootstrap/cache/services.php\n"
+        "/media/uploads/\n/.deploy-*\n", encoding="utf-8")
+    write_protection_archive(output, files)
+    with zipfile.ZipFile(output / ".deploy-cutover.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("index.php", files["public/index.php"])
+    (output / ".deploy-maintenance.php").write_bytes(maintenance_marker(secrets.token_hex(16)))
+    return target
+
+
+def prepare_git_release(arguments):
+    credentials = read_credentials(arguments.secrets_file, required=("mysql",))
+    output = arguments.secrets_file.parent / "deployments" / (datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + secrets.token_hex(3))
+    output.mkdir(parents=True)
+    build = Build(output, credentials["mysql"])
+    try:
+        build.prepare()
+        plan = build.tool("plan")
+        if plan["pending"]:
+            raise DeploymentError("Database migrations are pending. Prepare a backed-up maintenance/migration deployment before publishing a Git release.")
+        files = collect_files(output, reuse_vendor=False, layout="protected")
+        target = export_git_release(output, files)
+        report = {"layout": "protected", "source_commit": subprocess.check_output(["git", "-C", str(REPO), "rev-parse", "HEAD"]).decode().strip(),
+                  "source_dirty": bool(subprocess.check_output(["git", "-C", str(REPO), "status", "--porcelain"])),
+                  "files": len(files), "record_counts": plan["counts"], "verified_mysql_tls": plan["verified_tls"],
+                  "remote_writes": False, "credentials_and_runtime_excluded": True}
+        (output / "git-release-report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+        if arguments.publish_git_release:
+            if report["source_dirty"]:
+                raise DeploymentError("Commit source changes before publishing a production Git release.")
+            publish_git_release(target, build)
+        print("Protected Git release prepared with production dependencies and built assets.")
+        if arguments.publish_git_release:
+            print("No FTP connection, database migration or direct hosting-file upload was performed.")
+        else:
+            print("No FTP connection, Git push, database migration or remote file change was performed.")
+        print("Release folder: " + str(target))
+    finally:
+        build.close()
+        print("Private deployment output: " + str(output))
+
+
+def publish_git_release(target, build):
+    origin = build.run(["git", "-C", str(REPO), "remote", "get-url", "origin"], "git.log").decode().strip()
+    if not re.fullmatch(r"(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)acharyajay007/yesenterprise-website(?:\.git)?", origin):
+        raise DeploymentError("Git origin is not the intended website repository; no production push performed.")
+    exists = build.run(["git", "ls-remote", "--heads", origin, "refs/heads/production"], "git.log").strip()
+    clone = build.output / "git-publish"
+    if exists:
+        build.run(["git", "clone", "--single-branch", "--branch", "production", origin, str(clone)], "git.log")
+    else:
+        clone.mkdir()
+        build.run(["git", "-C", str(clone), "init", "-b", "production"], "git.log")
+        build.run(["git", "-C", str(clone), "remote", "add", "origin", origin], "git.log")
+
+    def git(*arguments):
+        return build.run(["git", "-C", str(clone), *arguments], "git.log")
+
+    if os.name == "nt":
+        git("config", "core.longpaths", "true")
+    for key in ("user.name", "user.email", "user.signingkey", "commit.gpgsign", "gpg.format", "gpg.program", "gpg.ssh.program"):
+        value = subprocess.run(["git", "-C", str(REPO), "config", "--get", key], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if value.returncode == 0:
+            git("config", key, value.stdout.decode().strip())
+        elif value.returncode != 1:
+            raise DeploymentError("Could not read source Git author/signing configuration; no production push performed.")
+    hooks = Path(build.run(["git", "-C", str(REPO), "rev-parse", "--git-path", "hooks"], "git.log").decode().strip())
+    git("config", "core.hooksPath", str(hooks if hooks.is_absolute() else (REPO / hooks).resolve()))
+    tracked = set(filter(None, git("ls-files", "-z").decode().split("\0")))
+    current = {path.relative_to(target).as_posix() for path in target.rglob("*") if path.is_file()}
+    for name in tracked:
+        area, relative = ("private", name[len("yesenterprise-app/"):]) if name.startswith("yesenterprise-app/") else ("public", name)
+        if preserved(relative, area):
+            raise DeploymentError("Production branch tracks environment/runtime data; stop and remove sensitive data through a reviewed recovery process.")
+    removed = sorted(tracked - current)
+    for start in range(0, len(removed), 100):
+        git("rm", "--", *removed[start:start + 100])
+    for name in sorted(current):
+        destination = clone / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(target / name, destination)
+    git("add", "--all")
+    if not git("diff", "--cached", "--name-only").strip():
+        print("Production branch already matches the prepared snapshot; no commit or push needed.")
+        return
+    source = build.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], "git.log").decode().strip()
+    git("commit", "-m", "Update protected production release", "-m",
+        "Build production dependencies and public assets from source " + source + ".\n\n"
+        "Exclude production credentials, private storage and owner uploads.\n\n"
+        "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>")
+    git("push", "-u", "origin", "production")
+    print("Production branch pushed. Hosting deployment and preservation/HTTPS checks are still required.")
 
 
 def apply_changes(remote, build, files, changes, plan, output):
@@ -283,21 +447,24 @@ def apply_changes(remote, build, files, changes, plan, output):
     if remote.exists(marker):
         raise DeploymentError("The site is already in maintenance mode; resolve it before deploying.")
     old_index = remote.get(remote.public + "/index.php")
-    if b"../yesenterprise-app/storage/framework/maintenance.php" not in old_index:
-        raise DeploymentError("Existing entry point does not use the supported private/shared layout.")
+    if index_layout(old_index) != remote.layout:
+        raise DeploymentError("Active deployment layout changed; stop and review before uploading.")
     with zipfile.ZipFile(output / "files-before.zip", "w", zipfile.ZIP_DEFLATED) as backup:
         for name, old in changes.items():
             if old is not None:
                 backup.writestr(name, old)
     token = secrets.token_hex(16)
-    maintenance = ("<?php\n// Deployment " + token + "\nhttp_response_code(503);\nheader('Retry-After: 60');\n"
-                   "header('Content-Type: text/html; charset=UTF-8');\necho '<!doctype html><html lang=\"en\"><title>Website update</title>"
-                   "<h1>Website update in progress</h1><p>Please try again shortly.</p></html>';\nexit;\n").encode()
+    maintenance = maintenance_marker(token)
     remote.put(marker, maintenance)
     try:
         if plan["pending"]:
             build.backup_database()
-        for name in sorted(changes, key=lambda name: name == "public/index.php"):
+        def priority(name):
+            if name in {"public/.htaccess", "private/.htaccess"}:
+                return 0
+            return 2 if name == "public/index.php" else 1
+
+        for name in sorted(changes, key=priority):
             remote.put(remote_path(remote, name), files[name])
         result = build.tool("migrate")
         if result["counts"] != plan["counts"]:
@@ -331,7 +498,7 @@ def deploy(arguments):
         plan = build.tool("plan")
         state_path = remote.private + "/deployment-state.json"
         state = json.loads(remote.get(state_path)) if remote.exists(state_path) else {}
-        files = collect_files(output, reuse_vendor)
+        files = collect_files(output, reuse_vendor, layout=remote.layout)
         changes = plan_files(remote, files, state)
         report = {"apply": arguments.apply, "changed_files": list(changes), "pending_migrations": plan["pending"],
                   "reuse_vendor": reuse_vendor, "record_counts": plan["counts"], "completed": False}
@@ -342,7 +509,7 @@ def deploy(arguments):
             return
         apply_changes(remote, build, files, changes, plan, output)
         try:
-            health_check(arguments.url)
+            health_check(arguments.url, protected=remote.layout == "protected")
         except (OSError, urllib.error.URLError, DeploymentError):
             raise DeploymentError("Uploads/migrations finished, but live HTTPS verification failed. Review the site and private backups before declaring success.") from None
         report["completed"] = True
@@ -360,10 +527,22 @@ def main():
     parser = argparse.ArgumentParser(description="Deploy an existing Laravel website using verified FTPS and remote MySQL.")
     parser.add_argument("--secrets-file", type=Path, required=True)
     parser.add_argument("--url", default="https://fair-sandybrown-kangaroo-55.hostingersite.com")
-    parser.add_argument("--apply", action="store_true", help="Apply changes; without this option the script is read-only remotely.")
+    action = parser.add_mutually_exclusive_group()
+    action.add_argument("--apply", action="store_true", help="Apply FTPS changes; without this option the script is read-only remotely.")
+    action.add_argument("--git-release", action="store_true", help="Build a protected production Git snapshot without uploading or migrating.")
+    action.add_argument("--verify-protection", action="store_true", help="Verify HTTPS storefront health and HTTP 403 protection for private paths.")
+    parser.add_argument("--publish-git-release", action="store_true", help="With --git-release, commit and push the snapshot to production; hosting may auto-deploy.")
     args = parser.parse_args()
+    if args.publish_git_release and not args.git_release:
+        parser.error("--publish-git-release requires --git-release")
     try:
-        deploy(args)
+        if args.git_release:
+            prepare_git_release(args)
+        elif args.verify_protection:
+            health_check(args.url, protected=True)
+            print("HTTPS storefront health and protected-path HTTP 403 checks passed.")
+        else:
+            deploy(args)
     except (DeploymentError, OSError, ftplib.Error, ValueError) as error:
         if isinstance(error, ssl.SSLCertVerificationError):
             print("Blocked: FTPS certificate validation failed. Correct the hostname/certificate; verification will not be bypassed.")

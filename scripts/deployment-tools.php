@@ -13,6 +13,9 @@ if ($mode === 'package') {
         if ($zip->open('/release/'.$name.'.zip', ZipArchive::CREATE | ZipArchive::EXCL) !== true) {
             throw new RuntimeException('Could not create deployment package.');
         }
+        if ($name === 'private' && ! $zip->addFromString('.htaccess', "Require all denied\n")) {
+            throw new RuntimeException('Could not protect the private application package.');
+        }
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS));
         foreach ($files as $file) {
             $relative = substr($file->getPathname(), strlen($root) + 1);
@@ -20,10 +23,18 @@ if ($mode === 'package') {
             if ($file->isLink()) {
                 throw new RuntimeException('Unexpected symlink in deployment source.');
             }
-            if ($name === 'private' && in_array($top, ['.env', 'public', 'storage'], true)) {
+            if ($name === 'private' && (str_starts_with($top, '.env') || in_array($top, ['public', 'storage'], true))) {
                 continue;
             }
-            if ($name === 'public' && str_starts_with($relative, 'media/uploads/')) {
+            if ($name === 'private' && str_starts_with($relative, 'bootstrap/cache/')
+                && ! in_array(basename($relative), ['.gitignore', 'packages.php', 'services.php'], true)) {
+                continue;
+            }
+            if ($name === 'private' && $relative === '.htaccess') {
+                continue;
+            }
+            if ($name === 'public' && (str_starts_with($relative, 'media/uploads/') || $top === 'storage'
+                || str_starts_with($top, '.env') || str_starts_with($top, '.deploy-') || $top === '.git')) {
                 continue;
             }
             $zip->addFile($file->getPathname(), $relative);

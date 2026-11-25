@@ -23,4 +23,13 @@ class DeploymentTest extends TestCase
         $this->assertSame(2, substr_count($source, "Mysql::ATTR_SSL_VERIFY_SERVER_CERT => env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT', true)"));
         $this->assertStringContainsString('<FilesMatch "^\.deploy-">', file_get_contents(public_path('.htaccess')));
     }
+
+    public function test_protected_application_and_hidden_paths_are_denied_before_static_file_exemptions(): void
+    {
+        $rules = file_get_contents(public_path('.htaccess'));
+        $this->assertStringContainsString('RewriteRule ^yesenterprise-app(?:/|$) - [F,L,NC]', $rules);
+        $this->assertStringContainsString('RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L]', $rules);
+        $this->assertStringContainsString('Options -Indexes', $rules);
+        $this->assertLessThan(strpos($rules, 'RewriteCond %{REQUEST_FILENAME} !-f'), strpos($rules, 'RewriteRule ^yesenterprise-app'));
+    }
 }
