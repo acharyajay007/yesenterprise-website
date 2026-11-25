@@ -90,7 +90,103 @@ files on hosting. Owner-uploaded media belongs in `media/uploads`, which is
 excluded from the production branch. Admin catalogue edits remain in MySQL and
 are not overwritten or reseeded.
 
-### One-time migration of the live installation
+### Git-only migration without File Manager uploads
+
+This is the preferred one-time migration when the existing app is the sibling
+`yesenterprise-app` outside `public_html`. It uses Git for every deployed file
+and HTTPS for authenticated server-side operations. The existing environment,
+storage and uploads are never committed or uploaded from a workstation.
+
+After committing source changes, prepare and publish both release branches:
+
+```powershell
+.\scripts\Deploy-Website.ps1 -PrepareGitRelease -PublishGitRelease -BootstrapGitRelease
+```
+
+The `bootstrap` snapshot contains the complete production dependencies/assets,
+both protection files, nine harmless physical probes and the one-time migration
+endpoint. Its public entry point still loads the original sibling application.
+The `production` snapshot loads the protected application instead. Both snapshots
+exclude environment files, storage and owner uploads.
+
+1. Deploy the updated `production` branch into the existing staging destination.
+   Keep automatic deployment disabled. The authenticated `stage-init` operation
+   creates nonsecret environment/private-storage/owner-upload probes server-side,
+   without File Manager or copying production secrets:
+
+   ```powershell
+   $archive = 'C:\private\original-private.zip'
+   $stage = 'https://fair-sandybrown-kangaroo-55.hostingersite.com/yesenterprise-stage'
+   .\scripts\Deploy-Website.ps1 -MigrateGitLayout -MigrationAction stage-init -EnvironmentArchive $archive -Url $stage
+   ```
+
+   Redeploy staging twice, running `stage-check` after each:
+
+   ```powershell
+   .\scripts\Deploy-Website.ps1 -MigrateGitLayout -MigrationAction stage-check -EnvironmentArchive $archive -Url $stage
+   ```
+
+   All three probes must remain unchanged. Staging refuses all live migration
+   operations. Do not use `main` for either deployment.
+2. In hPanel, select `bootstrap` and the live `public_html` destination. Deploy
+   only if hPanel supports the existing nonempty directory without clearing it.
+   If it requires an empty directory, stop; do not delete live files.
+3. Run the authenticated status check using the **original confidential private
+   installation ZIP**, which contains the unchanged production application key:
+
+   ```powershell
+   $archive = 'C:\private\original-private.zip'
+   .\scripts\Deploy-Website.ps1 -MigrateGitLayout -MigrationAction status -EnvironmentArchive $archive
+   ```
+
+   The archive is read locally; neither it nor the key is sent to Git or the
+   endpoint. Requests use purpose-specific HMAC signatures with short-lived,
+   single-use nonces over verified HTTPS. The endpoint refuses staging paths,
+   arbitrary filesystem paths and symlinks.
+4. Run the preparation operation:
+
+   ```powershell
+   .\scripts\Deploy-Website.ps1 -MigrateGitLayout -MigrationAction prepare -EnvironmentArchive $archive
+   ```
+
+   It verifies actual private-file HTTP 403 responses before copying secrets,
+   puts both apps into owned maintenance, drains existing requests, and creates
+   a trusted-TLS database backup in the private local deployments folder.
+   Server-side bounded batches back up the existing environment/storage and
+   public owner uploads, and copy private runtime into the protected app.
+   Every source, backup and copied file is checked by SHA-256. No database
+   migrations, imports, resets, seeds, new admins or key regeneration occur.
+   Server backups/checkpoints remain in the original private app's
+   `storage/app/private/git-layout-migration`; the original app is retained.
+5. Only after preparation reports `ready`, select `production` in hPanel and
+   deploy it to the same live destination. Both maintenance markers and all
+   runtime data must remain untracked and preserved.
+6. Complete cutover:
+
+   ```powershell
+   .\scripts\Deploy-Website.ps1 -MigrateGitLayout -MigrationAction finish -EnvironmentArchive $archive
+   ```
+
+   This requires the protected production entry point, rechecks all runtime and
+   owner-upload hashes **after** Git deployment, removes only stale server
+   config/route caches and the migration's own maintenance markers, and verifies
+   HTTPS pages/private-path denial. The endpoint then disables itself permanently
+   for this migration. Test the existing admin and authorized private downloads.
+
+Failed operations report an error and do not automatically reopen the site.
+Inspect status and resume preparation for interrupted copy/verification phases.
+Before completion, cancel without File Manager:
+
+```powershell
+.\scripts\Deploy-Website.ps1 -MigrateGitLayout -MigrationAction cancel -EnvironmentArchive $archive
+```
+
+Cancellation restores the saved legacy entry point and removes only owned
+maintenance markers, retaining backups. Completed migrations require a separate
+data-aware rollback: never replace newer submissions/uploads with old backups.
+Keep automatic deployment disabled until the migrated site is verified.
+
+### Optional manual migration of the live installation
 
 After staging preservation succeeds:
 

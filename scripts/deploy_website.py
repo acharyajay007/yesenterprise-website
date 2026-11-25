@@ -2,6 +2,7 @@ import argparse
 import base64
 import ftplib
 import hashlib
+import hmac
 import io
 import json
 import os
@@ -11,6 +12,7 @@ import secrets
 import shutil
 import ssl
 import subprocess
+import time
 import urllib.error
 import urllib.request
 import zipfile
@@ -21,6 +23,7 @@ from urllib.parse import urlsplit
 REPO = Path(__file__).resolve().parent.parent
 RUNTIME_DIRECTORIES = ("app", "bootstrap", "config", "database", "lang", "resources", "routes", "public")
 ACCESS_PROBE_EXTENSIONS = ("env", "json", "php", "log", "pdf", "txt", "webp", "css", "js")
+BOOTSTRAP_SCRIPT = Path(__file__).with_name("git-bootstrap.php")
 
 
 class DeploymentError(Exception):
@@ -300,17 +303,29 @@ def health_check(url, protected=False):
             if response.status != 200 or (path == "/en" and b"Yes Enterprise" not in content):
                 raise DeploymentError("Live deployment health check failed.")
     if protected:
-        paths = ["/yesenterprise-app/.env", "/yesenterprise-app/composer.json",
+        verify_private_paths(url)
+
+
+def verify_private_paths(url):
+    if urlsplit(url).scheme != "https":
+        raise DeploymentError("Private-path verification requires HTTPS.")
+    paths = ["/yesenterprise-app/.env", "/yesenterprise-app/composer.json",
                  "/yesenterprise-app/vendor/autoload.php", "/yesenterprise-app/storage/logs/laravel.log",
                  "/.git/config", "/.env"]
-        paths.extend("/yesenterprise-app/deployment-access-probe/check." + extension for extension in ACCESS_PROBE_EXTENSIONS)
-        for path in paths:
-            try:
-                with urllib.request.urlopen(url.rstrip("/") + path, timeout=45):
-                    raise DeploymentError("Protected application paths are not returning HTTP 403; do not publish or copy secrets.")
-            except urllib.error.HTTPError as error:
-                if error.code != 403:
-                    raise DeploymentError("Protected application paths must return HTTP 403; do not publish or copy secrets.") from None
+    paths.extend("/yesenterprise-app/deployment-access-probe/check." + extension for extension in ACCESS_PROBE_EXTENSIONS)
+    for path in paths:
+        try:
+            with urllib.request.urlopen(url.rstrip("/") + path, timeout=45):
+                raise DeploymentError("Protected application paths are not returning HTTP 403; do not publish or copy secrets.")
+        except urllib.error.HTTPError as error:
+            error.close()
+            if error.code != 403:
+                raise DeploymentError("Protected application paths must return HTTP 403; do not publish or copy secrets.") from None
+
+
+def probe_content(extension):
+    return (b"<?php http_response_code(409); echo 'PRIVATE_ACCESS_PROBE';"
+            if extension == "php" else b"PRIVATE_ACCESS_PROBE_NOT_A_SECRET")
 
 
 def write_protection_archive(output, files):
@@ -318,13 +333,11 @@ def write_protection_archive(output, files):
         archive.writestr(".htaccess", files["public/.htaccess"])
         archive.writestr("yesenterprise-app/.htaccess", files["private/.htaccess"])
         for extension in ACCESS_PROBE_EXTENSIONS:
-            content = (b"<?php http_response_code(409); echo 'PRIVATE_ACCESS_PROBE';"
-                       if extension == "php" else b"PRIVATE_ACCESS_PROBE_NOT_A_SECRET")
-            archive.writestr("yesenterprise-app/deployment-access-probe/check." + extension, content)
+            archive.writestr("yesenterprise-app/deployment-access-probe/check." + extension, probe_content(extension))
 
 
 def export_git_release(output, files):
-    required = {"private/.htaccess", "private/vendor/autoload.php", "public/.htaccess", "public/index.php",
+    required = {"private/.htaccess", "private/vendor/autoload.php", "private/app/Support/GitLayoutMigration.php", "public/.htaccess", "public/index.php",
                 "public/build/manifest.json"}
     if not required.issubset(files):
         raise DeploymentError("Production Git release is missing protection, dependencies or built assets.")
@@ -347,15 +360,29 @@ def export_git_release(output, files):
         path.write_bytes(content)
     (target / ".gitignore").write_text(
         "/yesenterprise-app/.env\n/yesenterprise-app/.env.*\n/yesenterprise-app/storage/\n"
-        "/yesenterprise-app/deployment-access-probe/\n"
+        "/yesenterprise-app/deployment-access-probe/*\n"
+        + "".join("!/yesenterprise-app/deployment-access-probe/check." + extension + "\n" for extension in ACCESS_PROBE_EXTENSIONS)
+        +
         "/yesenterprise-app/bootstrap/cache/*.php\n"
         "!/yesenterprise-app/bootstrap/cache/packages.php\n!/yesenterprise-app/bootstrap/cache/services.php\n"
         "/media/uploads/\n/.deploy-*\n", encoding="utf-8")
+    (target / "deployment-bootstrap.php").write_bytes(BOOTSTRAP_SCRIPT.read_bytes())
+    probes = target / "yesenterprise-app" / "deployment-access-probe"
+    probes.mkdir()
+    for extension in ACCESS_PROBE_EXTENSIONS:
+        (probes / ("check." + extension)).write_bytes(probe_content(extension))
     write_protection_archive(output, files)
     with zipfile.ZipFile(output / ".deploy-cutover.zip", "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr("index.php", files["public/index.php"])
     (output / ".deploy-maintenance.php").write_bytes(maintenance_marker(secrets.token_hex(16)))
     return target
+
+
+def export_git_bootstrap(output, target):
+    bootstrap = output / "git-bootstrap"
+    shutil.copytree(target, bootstrap)
+    (bootstrap / "index.php").write_bytes(public_index((REPO / "website" / "public" / "index.php").read_bytes(), "legacy"))
+    return bootstrap
 
 
 def prepare_git_release(arguments):
@@ -379,6 +406,8 @@ def prepare_git_release(arguments):
             if report["source_dirty"]:
                 raise DeploymentError("Commit source changes before publishing a production Git release.")
             publish_git_release(target, build)
+            if arguments.bootstrap_git_release:
+                publish_git_release(export_git_bootstrap(output, target), build, branch="bootstrap")
         print("Protected Git release prepared with production dependencies and built assets.")
         if arguments.publish_git_release:
             print("No FTP connection, database migration or direct hosting-file upload was performed.")
@@ -390,17 +419,19 @@ def prepare_git_release(arguments):
         print("Private deployment output: " + str(output))
 
 
-def publish_git_release(target, build):
+def publish_git_release(target, build, branch="production"):
+    if branch not in {"production", "bootstrap"}:
+        raise DeploymentError("Unsupported release branch.")
     origin = build.run(["git", "-C", str(REPO), "remote", "get-url", "origin"], "git.log").decode().strip()
     if not re.fullmatch(r"(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)acharyajay007/yesenterprise-website(?:\.git)?", origin):
         raise DeploymentError("Git origin is not the intended website repository; no production push performed.")
-    exists = build.run(["git", "ls-remote", "--heads", origin, "refs/heads/production"], "git.log").strip()
-    clone = build.output / "git-publish"
+    exists = build.run(["git", "ls-remote", "--heads", origin, "refs/heads/" + branch], "git.log").strip()
+    clone = build.output / ("git-publish" if branch == "production" else "git-publish-bootstrap")
     if exists:
-        build.run(["git", "clone", "--single-branch", "--branch", "production", origin, str(clone)], "git.log")
+        build.run(["git", "clone", "--single-branch", "--branch", branch, origin, str(clone)], "git.log")
     else:
         clone.mkdir()
-        build.run(["git", "-C", str(clone), "init", "-b", "production"], "git.log")
+        build.run(["git", "-C", str(clone), "init", "-b", branch], "git.log")
         build.run(["git", "-C", str(clone), "remote", "add", "origin", origin], "git.log")
 
     def git(*arguments):
@@ -420,7 +451,10 @@ def publish_git_release(target, build):
     current = {path.relative_to(target).as_posix() for path in target.rglob("*") if path.is_file()}
     for name in tracked:
         area, relative = ("private", name[len("yesenterprise-app/"):]) if name.startswith("yesenterprise-app/") else ("public", name)
-        if preserved(relative, area):
+        known_probe = area == "private" and any(
+            relative == "deployment-access-probe/check." + extension
+            and (clone / name).read_bytes() == probe_content(extension) for extension in ACCESS_PROBE_EXTENSIONS)
+        if preserved(relative, area) and not known_probe:
             raise DeploymentError("Production branch tracks environment/runtime data; stop and remove sensitive data through a reviewed recovery process.")
     removed = sorted(tracked - current)
     for start in range(0, len(removed), 100):
@@ -431,15 +465,133 @@ def publish_git_release(target, build):
         shutil.copyfile(target / name, destination)
     git("add", "--all")
     if not git("diff", "--cached", "--name-only").strip():
-        print("Production branch already matches the prepared snapshot; no commit or push needed.")
+        print(branch.capitalize() + " branch already matches the prepared snapshot; no commit or push needed.")
         return
     source = build.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], "git.log").decode().strip()
-    git("commit", "-m", "Update protected production release", "-m",
+    git("commit", "-m", "Update protected " + branch + " release", "-m",
         "Build production dependencies and public assets from source " + source + ".\n\n"
         "Exclude production credentials, private storage and owner uploads.\n\n"
         "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>")
-    git("push", "-u", "origin", "production")
-    print("Production branch pushed. Hosting deployment and preservation/HTTPS checks are still required.")
+    git("push", "-u", "origin", branch)
+    print(branch.capitalize() + " branch pushed. Hosting deployment and preservation/HTTPS checks are still required.")
+
+
+class NoMigrationRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, fp, code, message, headers, newurl):
+        raise DeploymentError("Authenticated migration requests must not redirect.")
+
+
+def migration_key(archive):
+    with zipfile.ZipFile(archive) as package:
+        environments = [name for name in (".env", "yesenterprise-app/.env") if name in package.namelist()]
+        if len(environments) != 1:
+            raise DeploymentError("Use the original private installation archive containing the production environment.")
+        environment = package.read(environments[0]).decode("utf-8-sig")
+    match = re.search(r"^APP_KEY\s*=\s*[\"']?(base64:[A-Za-z0-9+/=]+)[\"']?\s*$", environment, re.MULTILINE)
+    if not match or len(match[1]) < 40:
+        raise DeploymentError("The original production application key is missing from the private archive.")
+    return hmac.digest(match[1].encode(), b"yesenterprise:git-layout:v1", "sha256")
+
+
+def migration_request(url, key, action):
+    parsed = urlsplit(url)
+    staging = action in {"stage-init", "stage-check"}
+    allowed = {"/yesenterprise-stage", "/yesenterprise-stage/"} if staging else {"", "/"}
+    if parsed.scheme != "https" or not parsed.hostname or parsed.path not in allowed or parsed.query or parsed.fragment or parsed.username is not None:
+        raise DeploymentError("Migration requires the live site's root HTTPS URL.")
+    body = json.dumps({"action": action}, separators=(",", ":")).encode()
+    timestamp, nonce = str(int(time.time())), secrets.token_hex(16)
+    signature = hmac.new(key, timestamp.encode() + b"\n" + nonce.encode() + b"\n" + body, hashlib.sha256).hexdigest()
+    request = urllib.request.Request(url.rstrip("/") + "/deployment-bootstrap.php", data=body,
+                                     headers={"Content-Type": "application/json", "X-Deployment-Time": timestamp,
+                                              "X-Deployment-Nonce": nonce, "X-Deployment-Signature": signature})
+    opener = urllib.request.build_opener(NoMigrationRedirect())
+    try:
+        with opener.open(request, timeout=60) as response:
+            result = json.loads(response.read())
+            if response.status != 200 or not isinstance(result, dict) or "phase" not in result:
+                raise DeploymentError("Invalid migration response; maintenance remains unchanged.")
+            return result
+    except urllib.error.HTTPError as error:
+        status = error.code
+        error.close()
+        raise DeploymentError("Migration HTTP " + str(status) + "; inspect the private hosting PHP error log. No automatic maintenance removal.") from None
+
+
+def migrate_git_layout(arguments):
+    if arguments.environment_archive is None:
+        raise DeploymentError("Provide the original private installation archive; production secrets are never read from Git.")
+    key = migration_key(arguments.environment_archive)
+    request = lambda action: migration_request(arguments.url, key, action)
+    if arguments.migration_action in {"stage-init", "stage-check"}:
+        verify_private_paths(arguments.url)
+        result = request(arguments.migration_action)
+        if result.get("environment_storage_uploads_unchanged") is not True:
+            raise DeploymentError("Staging runtime preservation is unverified; do not deploy live.")
+        print("Staging environment, private storage and owner-upload probes remain unchanged.")
+        return
+    if arguments.migration_action == "status":
+        print(json.dumps(request("status")))
+        return
+    if arguments.migration_action == "cancel":
+        print(json.dumps(request("cancel")))
+        health_check(arguments.url)
+        return
+    verify_private_paths(arguments.url)
+    if arguments.migration_action == "finish":
+        migration_until(request, "finish", "cutover_verifying", "finished")
+        health_check(arguments.url, protected=True)
+        print("Protected production cutover verified. One-time migration endpoint disabled; original application retained.")
+        return
+    status = request("status")
+    if status["phase"] not in {"not_started", "cancelled", "draining", "copying", "copied", "verifying", "ready"}:
+        raise DeploymentError("Migration state requires review before continuing.")
+    if status["phase"] in {"not_started", "cancelled"}:
+        health_check(arguments.url, protected=True)
+        status = request("begin")
+    try:
+        with urllib.request.urlopen(arguments.url.rstrip("/") + "/en", timeout=45):
+            raise DeploymentError("The site must return HTTP 503 before backing up and copying runtime.")
+    except urllib.error.HTTPError as error:
+        error.close()
+        if error.code != 503:
+            raise DeploymentError("The site must return HTTP 503 before backing up and copying runtime.") from None
+    if status["phase"] == "draining":
+        wait = max(0, status["ready_after"] - int(time.time()))
+        if wait > 600:
+            raise DeploymentError("Unexpected request-drain interval; maintenance remains active.")
+        time.sleep(wait + 1)
+    credentials = read_credentials(arguments.secrets_file, required=("mysql",))
+    output = arguments.secrets_file.parent / "deployments" / ("git-migration-" + datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + secrets.token_hex(3))
+    output.mkdir(parents=True)
+    build = Build(output, credentials["mysql"])
+    try:
+        build.backup_database()
+        if not (output / "database-before.sql").is_file() or not (output / "database-before.sql").stat().st_size:
+            raise DeploymentError("The database backup is empty; maintenance remains active.")
+    finally:
+        build.close()
+    if status["phase"] in {"draining", "copying"}:
+        migration_until(request, "copy", "copying", "copied")
+    result = migration_until(request, "verify", "verifying", "ready")
+    if result.get("backups_verified") is not True:
+        raise DeploymentError("Runtime verification did not finish; maintenance remains active.")
+    print("Private runtime and server backups verified; trusted-TLS database backup saved privately.")
+    print("Site remains in maintenance. Deploy production in hPanel, then run the finish operation.")
+    print("Private database backup folder: " + str(output))
+
+
+def migration_until(request, action, pending, complete):
+    result, progress = request(action), -1
+    while result["phase"] == pending:
+        value = result.get("copied" if action == "copy" else "verified_files")
+        if type(value) is not int or value <= progress:
+            raise DeploymentError("Migration made no measurable progress; maintenance remains active.")
+        progress = value
+        result = request(action)
+    if result["phase"] != complete:
+        raise DeploymentError("Unexpected migration phase; maintenance remains active.")
+    return result
 
 
 def apply_changes(remote, build, files, changes, plan, output):
@@ -531,13 +683,21 @@ def main():
     action.add_argument("--apply", action="store_true", help="Apply FTPS changes; without this option the script is read-only remotely.")
     action.add_argument("--git-release", action="store_true", help="Build a protected production Git snapshot without uploading or migrating.")
     action.add_argument("--verify-protection", action="store_true", help="Verify HTTPS storefront health and HTTP 403 protection for private paths.")
+    action.add_argument("--git-migrate", action="store_true", help="Authenticate a one-time server-side Git layout migration without FTP or File Manager.")
+    parser.add_argument("--migration-action", choices=("prepare", "finish", "cancel", "status", "stage-init", "stage-check"), default="status")
+    parser.add_argument("--environment-archive", type=Path, help="Original private installation ZIP containing the unchanged production APP_KEY.")
+    parser.add_argument("--bootstrap-git-release", action="store_true", help="Also publish bootstrap with a legacy entry point; requires Git publication.")
     parser.add_argument("--publish-git-release", action="store_true", help="With --git-release, commit and push the snapshot to production; hosting may auto-deploy.")
     args = parser.parse_args()
     if args.publish_git_release and not args.git_release:
         parser.error("--publish-git-release requires --git-release")
+    if args.bootstrap_git_release and not (args.git_release and args.publish_git_release):
+        parser.error("--bootstrap-git-release requires --git-release and --publish-git-release")
     try:
         if args.git_release:
             prepare_git_release(args)
+        elif args.git_migrate:
+            migrate_git_layout(args)
         elif args.verify_protection:
             health_check(args.url, protected=True)
             print("HTTPS storefront health and protected-path HTTP 403 checks passed.")

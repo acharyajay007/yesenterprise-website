@@ -9,6 +9,11 @@ For Hostinger Git deployment restricted to `public_html`, use the
 snapshot without credentials, private uploads, database changes or a Git push.
 Deploy its dedicated production branch, not the source-only `main`; verify
 hosting protection and untracked-data preservation before migrating the live site.
+For a migration without File Manager uploads, publish the temporary `bootstrap`
+branch with `-BootstrapGitRelease`; it retains the original entry point while
+authenticated HTTPS operations back up and copy private runtime server-side.
+Follow the [Git-only migration procedure](docs/HOSTINGER-DEPLOYMENT.md#git-only-migration-without-file-manager-uploads)
+before switching hPanel to `production`. Production credentials never enter Git.
 
 The owner-supplied logo is displayed beside **Yes Enterprise / Rajkot** in the
 public header/footer and admin panel, and is also used as the favicon.

@@ -6,6 +6,15 @@ param(
     [switch]$PrepareGitRelease,
     [Parameter(ParameterSetName = "Git")]
     [switch]$PublishGitRelease,
+    [Parameter(ParameterSetName = "Git")]
+    [switch]$BootstrapGitRelease,
+    [Parameter(Mandatory, ParameterSetName = "Migrate")]
+    [switch]$MigrateGitLayout,
+    [Parameter(ParameterSetName = "Migrate")]
+    [ValidateSet("prepare", "finish", "cancel", "status", "stage-init", "stage-check")]
+    [string]$MigrationAction = "status",
+    [Parameter(Mandatory, ParameterSetName = "Migrate")]
+    [string]$EnvironmentArchive,
     [Parameter(Mandatory, ParameterSetName = "Verify")]
     [switch]$VerifyProtection,
     [string]$SecretsFile = "$env:USERPROFILE\.yesenterpries-secret\passwords.txt",
@@ -22,6 +31,12 @@ if ($PrepareGitRelease) {
 }
 if ($PublishGitRelease) {
     $arguments += "--publish-git-release"
+}
+if ($BootstrapGitRelease) {
+    $arguments += "--bootstrap-git-release"
+}
+if ($MigrateGitLayout) {
+    $arguments += @("--git-migrate", "--migration-action", $MigrationAction, "--environment-archive", $EnvironmentArchive)
 }
 if ($VerifyProtection) {
     $arguments += "--verify-protection"

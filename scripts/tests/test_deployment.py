@@ -1,4 +1,7 @@
 import argparse
+import base64
+import hashlib
+import hmac
 import importlib.util
 import io
 import json
@@ -229,6 +232,7 @@ class DeploymentTests(unittest.TestCase):
         return {
             "private/.htaccess": b"Require all denied\n",
             "private/vendor/autoload.php": b"<?php // dependency",
+            "private/app/Support/GitLayoutMigration.php": b"<?php // migration fixture",
             "private/.gitignore": b"/vendor\n",
             "private/bootstrap/cache/.gitignore": b"*\n",
             "private/bootstrap/cache/packages.php": b"<?php return [];",
@@ -256,6 +260,113 @@ class DeploymentTests(unittest.TestCase):
         with zipfile.ZipFile(self.root / ".deploy-cutover.zip") as archive:
             self.assertEqual({"index.php"}, set(archive.namelist()))
         self.assertIn(b"http_response_code(503)", (self.root / ".deploy-maintenance.php").read_bytes())
+        self.assertTrue((target / "deployment-bootstrap.php").is_file())
+        for extension in deployment.ACCESS_PROBE_EXTENSIONS:
+            self.assertEqual(deployment.probe_content(extension), (target / "yesenterprise-app/deployment-access-probe" / ("check." + extension)).read_bytes())
+
+    def test_bootstrap_contains_production_files_but_keeps_the_original_application_active(self):
+        production = deployment.export_git_release(self.root, self.release_files())
+        bootstrap = deployment.export_git_bootstrap(self.root, production)
+        self.assertEqual("legacy", deployment.index_layout((bootstrap / "index.php").read_bytes()))
+        self.assertEqual("protected", deployment.index_layout((production / "index.php").read_bytes()))
+        self.assertEqual((production / ".htaccess").read_bytes(), (bootstrap / ".htaccess").read_bytes())
+        self.assertFalse((bootstrap / "yesenterprise-app/.env").exists())
+        self.assertFalse((bootstrap / "yesenterprise-app/storage").exists())
+
+    def test_migration_key_uses_existing_private_archive_and_never_a_new_key(self):
+        key = "base64:" + base64.b64encode(bytes(32)).decode()
+        archive = self.root / "private.zip"
+        with zipfile.ZipFile(archive, "w") as package:
+            package.writestr(".env", 'APP_KEY="' + key + '"\nAPP_DEBUG=false\n')
+        self.assertEqual(hmac.digest(key.encode(), b"yesenterprise:git-layout:v1", "sha256"), deployment.migration_key(archive))
+        with zipfile.ZipFile(archive, "w") as package:
+            package.writestr("yesenterprise-app/.env", "APP_KEY=" + key + "\n")
+        self.assertEqual(hmac.digest(key.encode(), b"yesenterprise:git-layout:v1", "sha256"), deployment.migration_key(archive))
+        with zipfile.ZipFile(archive, "w") as package:
+            package.writestr("yesenterprise-app/.env", "APP_KEY=" + key + "\n")
+            package.writestr(".env", "APP_KEY=" + key + "\n")
+        with self.assertRaises(deployment.DeploymentError):
+            deployment.migration_key(archive)
+        with zipfile.ZipFile(archive, "w") as package:
+            package.writestr(".env", "APP_DEBUG=false")
+        with self.assertRaises(deployment.DeploymentError):
+            deployment.migration_key(archive)
+
+    def test_signed_migration_request_uses_https_post_and_rejects_redirects(self):
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.status = 200
+        response.read.return_value = b'{"phase":"not_started"}'
+        opener = Mock()
+        opener.open.return_value = response
+        key = bytes(32)
+        with patch.object(deployment.urllib.request, "build_opener", return_value=opener):
+            self.assertEqual("not_started", deployment.migration_request("https://example.invalid", key, "status")["phase"])
+        request = opener.open.call_args.args[0]
+        signed = (request.headers["X-deployment-time"] + "\n" + request.headers["X-deployment-nonce"] + "\n").encode() + request.data
+        self.assertEqual(hmac.new(key, signed, hashlib.sha256).hexdigest(), request.headers["X-deployment-signature"])
+        self.assertEqual("POST", request.get_method())
+        for url in ("http://example.invalid", "https://example.invalid/stage", "https://user@example.invalid"):
+            with self.assertRaises(deployment.DeploymentError):
+                deployment.migration_request(url, key, "status")
+        with self.assertRaises(deployment.DeploymentError):
+            deployment.NoMigrationRedirect().redirect_request(request, None, 302, "", {}, "https://other.invalid")
+
+    def test_migration_loops_require_measurable_progress_and_expected_terminal_state(self):
+        request = Mock(side_effect=[{"phase": "copying", "copied": 50}, {"phase": "copying", "copied": 100}, {"phase": "copied"}])
+        self.assertEqual("copied", deployment.migration_until(request, "copy", "copying", "copied")["phase"])
+        stalled = Mock(side_effect=[{"phase": "copying", "copied": 50}, {"phase": "copying", "copied": 50}])
+        with self.assertRaises(deployment.DeploymentError):
+            deployment.migration_until(stalled, "copy", "copying", "copied")
+        with self.assertRaises(deployment.DeploymentError):
+            deployment.migration_until(Mock(return_value={"phase": "wrong"}), "finish", "cutover_verifying", "finished")
+
+    def test_preparation_drains_then_backs_up_before_copy_and_does_not_cut_over(self):
+        self.check_preparation_backup_order(fail=False)
+
+    def test_failed_database_backup_leaves_maintenance_and_never_copies_or_finishes(self):
+        self.check_preparation_backup_order(fail=True)
+
+    def check_preparation_backup_order(self, fail):
+        events = []
+        file = self.root / "passwords.txt"
+        file.write_text("MYSQL:\nhost: db.example.invalid\nport: 3306\ndatabase: fixture\nusername: fixture\npassword: secret\n")
+        args = argparse.Namespace(environment_archive=self.root / "original.zip", migration_action="prepare",
+                                  secrets_file=file, url="https://example.invalid")
+
+        def request(url, key, action):
+            events.append(action)
+            return {"status": {"phase": "not_started"}, "begin": {"phase": "draining", "ready_after": 100},
+                    "copy": {"phase": "copied"}, "verify": {"phase": "ready", "backups_verified": True}}[action]
+
+        class Backup:
+            def __init__(backup, output, db):
+                backup.output = output
+
+            def backup_database(backup):
+                events.append("backup")
+                if fail:
+                    raise deployment.DeploymentError("Fixture database backup failed.")
+                (backup.output / "database-before.sql").write_text("-- verified fixture backup")
+
+            def close(backup):
+                events.append("cleanup")
+
+        maintenance = deployment.urllib.error.HTTPError(args.url, 503, "Maintenance", {}, None)
+        with patch.object(deployment, "migration_key", return_value=bytes(32)), \
+                patch.object(deployment, "migration_request", side_effect=request), \
+                patch.object(deployment, "verify_private_paths"), patch.object(deployment, "health_check"), \
+                patch.object(deployment.urllib.request, "urlopen", side_effect=maintenance), \
+                patch.object(deployment.time, "time", return_value=100), \
+                patch.object(deployment.time, "sleep", side_effect=lambda value: events.append("drain")), \
+                patch.object(deployment, "Build", Backup):
+            if fail:
+                with self.assertRaises(deployment.DeploymentError):
+                    deployment.migrate_git_layout(args)
+                self.assertEqual(["status", "begin", "drain", "backup", "cleanup"], events)
+            else:
+                deployment.migrate_git_layout(args)
+                self.assertEqual(["status", "begin", "drain", "backup", "cleanup", "copy", "verify"], events)
 
     def test_git_release_rejects_missing_assets_and_runtime_owned_paths(self):
         files = self.release_files()
