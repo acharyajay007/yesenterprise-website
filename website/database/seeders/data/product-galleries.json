@@ -1,0 +1,61 @@
+{
+  "fabawn": [
+    {
+      "image_path": "customer-awnings/a07.webp",
+      "captions": {
+        "en": "Shopfront awning installation",
+        "gu": "દુકાનના આગળના ભાગમાં ઓનિંગ ઇન્સ્ટોલેશન",
+        "hi": "दुकान के सामने ऑनिंग इंस्टॉलेशन"
+      },
+      "notice": "awning.customerPhoto",
+      "source_url": null,
+      "media_approved": true
+    },
+    {
+      "image_path": "customer-awnings/a11.webp",
+      "captions": {
+        "en": "Residential awning installation",
+        "gu": "રહેણાંક ઓનિંગ ઇન્સ્ટોલેશન",
+        "hi": "आवासीय ऑनिंग इंस्टॉलेशन"
+      },
+      "notice": "awning.customerPhoto",
+      "source_url": null,
+      "media_approved": true
+    },
+    {
+      "image_path": "customer-awnings/b08.webp",
+      "captions": {
+        "en": "Installed awning fabric and support detail",
+        "gu": "ઇન્સ્ટોલ કરેલા ઓનિંગના ફેબ્રિક અને આધારની વિગત",
+        "hi": "इंस्टॉल की गई ऑनिंग के फैब्रिक और सपोर्ट का विवरण"
+      },
+      "notice": "awning.customerPhoto",
+      "source_url": null,
+      "media_approved": true
+    }
+  ],
+  "signage-film": [
+    {
+      "image_path": "suppliers/lx-window-application.webp",
+      "captions": {
+        "en": "Decorative window-film application",
+        "gu": "બારી પર સુશોભન ફિલ્મનો ઉપયોગ",
+        "hi": "खिड़की पर सजावटी फिल्म का उपयोग"
+      },
+      "notice": "supplierApplication",
+      "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf",
+      "media_approved": false
+    },
+    {
+      "image_path": "suppliers/lx-wall-application.webp",
+      "captions": {
+        "en": "Retail graphic-film application",
+        "gu": "રિટેલ જગ્યામાં ગ્રાફિક ફિલ્મનો ઉપયોગ",
+        "hi": "रिटेल स्थान में ग्राफिक फिल्म का उपयोग"
+      },
+      "notice": "supplierApplication",
+      "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf",
+      "media_approved": false
+    }
+  ]
+}

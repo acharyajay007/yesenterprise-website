@@ -1,0 +1,83 @@
+{
+    "photos": {
+        "storefront": {
+            "image_path": "hero/storefront.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=9",
+            "width": 3325,
+            "height": 2895,
+            "pdf_xref": 196
+        },
+        "large-format": {
+            "image_path": "hero/large-format.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=6",
+            "width": 1936,
+            "height": 1531,
+            "pdf_xref": 117
+        },
+        "retail-graphics": {
+            "image_path": "hero/retail-graphics.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=11",
+            "width": 2025,
+            "height": 1404,
+            "pdf_xref": 247
+        },
+        "signage": {
+            "image_path": "hero/signage.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=13",
+            "width": 2040,
+            "height": 1240,
+            "pdf_xref": 294
+        },
+        "tarpaulin": {
+            "image_path": "hero/tarpaulin.webp",
+            "source_url": "https://www.srf.com/storage/images/coated/coated-fabrics-business-b-img.webp",
+            "width": 1920,
+            "height": 1080
+        },
+        "canopy": {
+            "image_path": "hero/canopy.webp",
+            "source_url": "https://www.srf.com/storage/images/coated/coated-fabrics-business-b-img2.webp",
+            "width": 1920,
+            "height": 1080
+        },
+        "illuminated-display": {
+            "image_path": "hero/illuminated-display.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=12",
+            "width": 2676,
+            "height": 3782,
+            "pdf_xref": 276
+        },
+        "wall-graphics": {
+            "image_path": "hero/wall-graphics.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=15",
+            "width": 3142,
+            "height": 1789,
+            "pdf_xref": 346
+        },
+        "glass-film": {
+            "image_path": "hero/glass-film.webp",
+            "source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf#page=14",
+            "width": 2818,
+            "height": 2604,
+            "pdf_xref": 335
+        }
+    },
+    "output": { "width": 1920, "height": 1080 },
+    "overview": "storefront",
+    "categories": {
+        "flex": "large-format",
+        "vinyl": "retail-graphics",
+        "laminate": "storefront",
+        "board": "signage",
+        "tarpaulin": "tarpaulin",
+        "awnings": "canopy",
+        "fabric": "large-format",
+        "paper": "illuminated-display",
+        "wallpaper": "wall-graphics",
+        "glass": "glass-film",
+        "reflective": "signage",
+        "display": "retail-graphics",
+        "lighting": "illuminated-display"
+    },
+    "review_note": "Supplier application photography, not a claim of a particular Yes Enterprise installation or exact-model material. Native HD originals center-cropped and downsampled to 1920 x 1080 WebP, never enlarged. Photo dimensions record the originals. Review publication rights and category suitability before production approval."
+}

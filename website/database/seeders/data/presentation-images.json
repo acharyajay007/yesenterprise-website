@@ -1,0 +1,1457 @@
+{
+  "lx-autodecal-series": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-color-matching-solution": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ep115": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-high-performance-calendered-lami": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-la8000-series": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-la8082n": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-la9000": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lb9000": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc2000-series": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5510": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5520": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5521": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5560": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5570": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5580": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6700-series": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lcs90sc": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld28u0": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld39ut": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld59ht": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5100": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5110": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5111": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5120": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5121": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc5500": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6700m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6713": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6713m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc671dm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc671e": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc671f": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc671fm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc671h": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc671j": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672bm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672cm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672d": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672e": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672f": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc672h": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6730": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6734": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6736": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6739": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6739m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc673am": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc673b": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc673c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc673cm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc673d": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc673e": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6740": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6741": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6741m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6742": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6742m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6743": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6744": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6746": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6747": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6748": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc674a": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc674c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc674d": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6750": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6751": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6752": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6752m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6753": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6753m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6754": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6755": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6756": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6757": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6758": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6759": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc675a": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc675dm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc675em": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6760": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6761": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6762": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6763": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6765": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6766": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc676bm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc676c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6770": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6771m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6772": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6773": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6774": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6775": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6775m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6776": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6779": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6779m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc677am": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc677bm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc677cm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6780": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lc6781m": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1700": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1710": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1740": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1750": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1800": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1810": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1840": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld1850": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld2700": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld2710": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld2800": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld2810": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld281t": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld285t": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld3911": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld391t": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld3921": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld393t": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld395t": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld3980": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld39a0": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld4910": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld92ht": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ld92ut": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ldj90df": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ldl90df": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-le2801": {
+    "image_path": "suppliers/lx-wall-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lfc80990": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lm40000": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lm41000": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lm5300w": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lm54000": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lm5400n": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-ln951p": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-ln951pg": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-ln951pm": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-ln95st": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lp1712": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lp2812": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lp3912": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lp5962": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lp59h2": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lp809904": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lp89000": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lp909904": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "lx-lt4000": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4017": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4018": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4019": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt401b": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt401d": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt401e": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4020": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4021": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4027": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4029": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt402a": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt402b": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt402c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt402d": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt402e": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4032": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt403a": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt403b": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt403c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt403d": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4040": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4041": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4042": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4043": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4044": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4045": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4046": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4047": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4049": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt404b": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4050": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4051": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4052": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4053": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4054": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4055": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4056": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4057": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4058": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4059": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4060": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4065": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt406a": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4071": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4073": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4075": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4077": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4080": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4081": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4178": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt4510": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lt457a": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lw004rm": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lw2800": {
+    "image_path": "suppliers/lx-wall-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lw9143": {
+    "image_path": "suppliers/lx-wall-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lw9144kp": {
+    "image_path": "suppliers/lx-wall-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-lw96g7": {
+    "image_path": "suppliers/lx-wall-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-spb014": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "lx-spb014g": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "srf-frontlit": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-hot-laminated-covers": {
+    "image_path": "assets/srf-static-covers.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-bheem": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-arjun": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-agni": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-krishna": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-hi-gloss": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "srf-fabglow": {
+    "image_path": "assets/srf-frontlit.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://www.srf.com/business-solutions/laminated-fabrics"
+  },
+  "3m-7125": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-7725": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3630": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-50": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3650": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3690lf": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-40c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij180c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij180cv3": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-180": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij3552c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-180mc": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3690c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-181": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij8624": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3470": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij3630": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3552c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-1000": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij8150": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij3555": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3730": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3690": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3500c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-8170": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-lx480mc": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij3650": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-48c": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-3662": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-7725se": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-780mc-10r": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-ij680cr-10": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-8519": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8508": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8528": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8600m-301": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8991": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-3660m": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-3619": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8915": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-3620": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8048g": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-3647": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-3658g": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8428g": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8518": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8509": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8520": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8549l": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8510m": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8548g": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-8993": {
+    "image_path": "suppliers/052a115719233dc55457.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+  },
+  "3m-4000": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-3930": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-3430": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-3310": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-7310": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-1179c": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-3439": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-3937": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-680": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-680cr": {
+    "image_path": "suppliers/082ea5050fd61e8b8477.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://sunsignandtechnologies.com/product/sunstar-retro-vinyl-rvpl-b/"
+  },
+  "3m-fasara-gradation": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-fasara-frost-matte": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-fasara-fabric-washi": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-fasara-natural": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-fasara-geometric": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-fasara-stripe": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-fasara-border": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-sh2bkst": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-sh2dgst-f": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-sh2apcr": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "3m-sh2fgfn": {
+    "image_path": "suppliers/lx-window-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  },
+  "signage-film": {
+    "image_path": "suppliers/lx-signage-application.webp",
+    "image_notice": "merchandising.rangeImage",
+    "image_source_url": "https://img.lxhausys.com/2024/content/files/202506171637/2025%20VIZUON%20Catalog.pdf"
+  }
+}
