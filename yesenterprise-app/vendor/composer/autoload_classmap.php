@@ -42,6 +42,7 @@ return array(
     'App\\Providers\\Filament\\AdminPanelProvider' => $baseDir . '/app/Providers/Filament/AdminPanelProvider.php',
     'App\\Rules\\ResumeDocument' => $baseDir . '/app/Rules/ResumeDocument.php',
     'App\\Services\\DeliverSubmission' => $baseDir . '/app/Services/DeliverSubmission.php',
+    'App\\Support\\GitLayoutMigration' => $baseDir . '/app/Support/GitLayoutMigration.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => $vendorDir . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',
     'BladeUI\\Icons\\BladeIconsServiceProvider' => $vendorDir . '/blade-ui-kit/blade-icons/src/BladeIconsServiceProvider.php',

@@ -743,6 +743,7 @@ class ComposerStaticInit69e5173e6316c0552c705cd23ca9cd44
         'App\\Providers\\Filament\\AdminPanelProvider' => __DIR__ . '/../..' . '/app/Providers/Filament/AdminPanelProvider.php',
         'App\\Rules\\ResumeDocument' => __DIR__ . '/../..' . '/app/Rules/ResumeDocument.php',
         'App\\Services\\DeliverSubmission' => __DIR__ . '/../..' . '/app/Services/DeliverSubmission.php',
+        'App\\Support\\GitLayoutMigration' => __DIR__ . '/../..' . '/app/Support/GitLayoutMigration.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => __DIR__ . '/..' . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',
         'BladeUI\\Icons\\BladeIconsServiceProvider' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/BladeIconsServiceProvider.php',
