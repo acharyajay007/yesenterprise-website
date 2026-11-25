@@ -60,14 +60,18 @@ Native Git deployment must retain files that are not tracked by the deployment
 branch. Do not assume every hosting deployment implementation does this.
 
 1. Keep live auto-deployment disabled and back up the existing site/database.
-2. In a disposable staging subfolder, create a protected `yesenterprise-app`
-   directory with `Require all denied` in its `.htaccess`, an `.env` containing
+2. Select an empty disposable staging subfolder, such as
+   `public_html/yesenterprise-stage`, and deploy the prepared `production` branch
+   there first. Do not prepopulate it: Hostinger's legacy Git flow requires an
+   empty destination for the first deployment. Never clear the live directory
+   to satisfy that requirement.
+3. Confirm the deployed `yesenterprise-app/.htaccess` contains
+   `Require all denied`. In that protected directory, create an `.env` containing
    only non-secret test values (`APP_DEBUG=false`), and a dummy file in
-   `storage/app/private/`.
-3. Deploy the prepared production branch to that staging subfolder using hPanel.
-   Verify the dummy environment and storage file remain intact in File Manager.
-4. Redeploy and verify they remain intact again. Verify direct HTTP requests to
-   the staging private app return 403.
+   `storage/app/private/`. Verify direct HTTP requests to the existing private
+   files return 403 before using any production credentials.
+4. Redeploy twice, checking after each deployment that both dummy files remain
+   intact in File Manager and private-path requests still return 403.
 5. If either file disappears, **stop**. Do not deploy into the live directory or
    enable auto-deployment: that host's Git integration cannot safely preserve
    runtime data with this layout. Use a preservation-aware updater instead.
@@ -75,6 +79,11 @@ branch. Do not assume every hosting deployment implementation does this.
 This staging preservation probe does not need production credentials or a working
 database. Its homepage can fail with the dummy environment; check retention in
 File Manager and private-path denial separately.
+
+Hostinger's [Git documentation](https://docs.hostinger.com/websites/git) describes
+the empty-directory requirement for its legacy deployment flow and automatic
+deployments being enabled by default for GitHub connections. Confirm the actual
+hPanel configuration rather than assuming auto-deployment is disabled.
 
 The release updates tracked supplier/default media; do not manually modify those
 files on hosting. Owner-uploaded media belongs in `media/uploads`, which is
@@ -84,6 +93,12 @@ are not overwritten or reseeded.
 ### One-time migration of the live installation
 
 After staging preservation succeeds:
+
+The procedure below also requires hPanel to support deploying into the existing,
+nonempty live directory without clearing it. If it reports that the destination
+must be empty, stop: do not delete or move live files to force initialization.
+A separately verified staging-promotion or preservation-aware update procedure
+is required before live migration.
 
 1. Back up the existing private app (including hidden `.env`), its storage, public
    uploads, and database. Keep those backups outside the web-accessible area.
