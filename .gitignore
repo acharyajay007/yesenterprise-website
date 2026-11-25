@@ -1,0 +1,9 @@
+/yesenterprise-app/.env
+/yesenterprise-app/.env.*
+/yesenterprise-app/storage/
+/yesenterprise-app/deployment-access-probe/
+/yesenterprise-app/bootstrap/cache/*.php
+!/yesenterprise-app/bootstrap/cache/packages.php
+!/yesenterprise-app/bootstrap/cache/services.php
+/media/uploads/
+/.deploy-*

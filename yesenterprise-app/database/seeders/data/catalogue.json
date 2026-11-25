@@ -1,0 +1,266 @@
+{
+  "products": [
+    {
+      "id": "lp2812",
+      "brand": "LX Hausys / VIZUON",
+      "model": "LP2812",
+      "name": "LP2812",
+      "category": "laminate",
+      "desc": "lpDesc",
+      "art": "laminate",
+      "chips": [
+        "70 µm",
+        "PVC"
+      ],
+      "variants": [
+        "LP2812"
+      ],
+      "specs": [
+        [
+          "baseFilm",
+          "70 µm"
+        ],
+        [
+          "totalFilm",
+          "95 µm ±10%"
+        ],
+        [
+          "composition",
+          "@clearPvc"
+        ],
+        [
+          "adhesive",
+          "@permanent"
+        ]
+      ],
+      "source": "https://img.lxhausys.com/lxhausys/02_GL/04_Pros/01_Documentaion/05_VIZUON_Documentation/5)%20Corporate%20Brand/LP2812_Technical%20Datasheet.pdf"
+    },
+    {
+      "id": "srf-frontlit",
+      "brand": "SRF",
+      "model": "Frontlit",
+      "name": "SRF Frontlit",
+      "category": "flex",
+      "desc": "srfDesc",
+      "art": "flex",
+      "chips": [
+        "175–440 gsm"
+      ],
+      "variants": [
+        "@confirmation"
+      ],
+      "specs": [
+        [
+          "familyRange",
+          "175–440 gsm"
+        ]
+      ],
+      "source": "https://www.srf.com/business-solutions/laminated-fabrics"
+    },
+    {
+      "id": "sunstar-lamination",
+      "brand": "Sunstar",
+      "model": "G8 / M8",
+      "name": "Sunstar G8 / M8",
+      "category": "laminate",
+      "desc": "sunDesc",
+      "art": "laminate",
+      "chips": [
+        "80 µm",
+        "50 m"
+      ],
+      "variants": [
+        "G8 Gloss",
+        "M8 Matt"
+      ],
+      "specs": [
+        [
+          "width",
+          "0.91 / 1.02 / 1.07 / 1.27 / 1.52 m"
+        ],
+        [
+          "length",
+          "50 m"
+        ]
+      ],
+      "source": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/"
+    },
+    {
+      "id": "jindal-fl300",
+      "brand": "Jindal / Jinflex",
+      "model": "FL300",
+      "name": "Jindal FL300",
+      "category": "flex",
+      "desc": "jindalDesc",
+      "art": "flex",
+      "chips": [
+        "300 gsm"
+      ],
+      "variants": [
+        "FL300"
+      ],
+      "specs": [
+        [
+          "model",
+          "FL300 / 300 gsm"
+        ]
+      ],
+      "source": "https://jindalspecialty.com/products.html"
+    },
+    {
+      "id": "signage-film",
+      "brand": "LX Hausys / VIZUON",
+      "model": "VIZUON",
+      "name": "VIZUON",
+      "category": "vinyl",
+      "desc": "vinylDesc",
+      "art": "vinyl",
+      "chips": [],
+      "variants": [
+        "@confirmation"
+      ],
+      "specs": [],
+      "source": null
+    },
+    {
+      "id": "sheets",
+      "brand": "",
+      "model": null,
+      "name": null,
+      "category": "board",
+      "desc": "boardDesc",
+      "art": "board",
+      "chips": [],
+      "variants": [
+        "@confirmation"
+      ],
+      "specs": [],
+      "source": null
+    },
+    {
+      "id": "protective-materials",
+      "brand": "SRF",
+      "model": null,
+      "name": null,
+      "category": "tarpaulin",
+      "desc": "tarpDesc",
+      "art": "tarpaulin",
+      "chips": [],
+      "variants": [
+        "@confirmation"
+      ],
+      "specs": [],
+      "source": "https://www.srf.com/business-solutions/laminated-fabrics"
+    },
+    {
+      "id": "fabawn",
+      "brand": "SRF",
+      "model": "FABAWN",
+      "name": "FABAWN",
+      "category": "awnings",
+      "desc": "awnDesc",
+      "art": "awning",
+      "chips": [],
+      "variants": [
+        "@confirmation"
+      ],
+      "specs": [],
+      "source": "https://www.srf.com/business-solutions/coated-fabrics"
+    }
+  ],
+  "media": {
+    "lp2812": {
+      "file": "materials.jpeg",
+      "notice": "ownerCategory",
+      "credit": "Owner-supplied material packaging / not an LP2812 photo",
+      "source": null
+    },
+    "srf-frontlit": {
+      "file": "srf-frontlit.webp",
+      "notice": "supplierApplication",
+      "credit": "SRF / frontlit application image",
+      "source": "https://www.srf.com/business-solutions/laminated-fabrics"
+    },
+    "sunstar-lamination": {
+      "file": "sunstar-lamination.webp",
+      "notice": "supplierProduct",
+      "credit": "Sun Sign & Technologies / Sunstar G8 & M8",
+      "source": "https://sunsignandtechnologies.com/product/sunstar-lamination-g8-gloss-m8-matt/",
+      "small": true
+    },
+    "jindal-fl300": {
+      "file": "jindal-category.jpg",
+      "notice": "supplierCategory",
+      "credit": "Jindal Specialty / shared category header, not FL300",
+      "source": "https://jindalspecialty.com/products.html"
+    },
+    "signage-film": {
+      "file": "materials.jpeg",
+      "notice": "ownerCategory",
+      "credit": "Owner-supplied material packaging / not an exact model photo",
+      "source": null
+    },
+    "sheets": {
+      "file": "owner-sheets.jpeg",
+      "notice": "ownerCategory",
+      "credit": "Owner stock photograph: WhatsApp Image 2026-11-20 at 20.14.50.jpeg",
+      "source": null
+    },
+    "protective-materials": {
+      "file": "srf-static-covers.webp",
+      "notice": "supplierApplication",
+      "credit": "SRF / static cover application",
+      "source": "https://www.srf.com/business-solutions/coated-fabrics"
+    },
+    "fabawn": {
+      "file": "srf-fabawn.webp",
+      "notice": "supplierApplication",
+      "credit": "SRF / FABAWN fabric application",
+      "source": "https://www.srf.com/business-solutions/coated-fabrics"
+    }
+  },
+  "photographs": [
+    {
+      "file": "inventory.jpeg",
+      "group": "materials",
+      "title": "materials",
+      "notice": "supplied"
+    },
+    {
+      "file": "materials.jpeg",
+      "group": "materials",
+      "title": "vinyl",
+      "notice": "supplied"
+    },
+    {
+      "file": "awning.jpeg",
+      "group": "awnings",
+      "title": "awnings",
+      "notice": "supplied"
+    },
+    {
+      "file": "shade.jpeg",
+      "group": "awnings",
+      "title": "outdoor",
+      "notice": "supplied"
+    },
+    {
+      "file": "owner-sheets.jpeg",
+      "group": "materials",
+      "title": "board",
+      "notice": "ownerCategory"
+    },
+    {
+      "file": "srf-frontlit.webp",
+      "group": "inspiration",
+      "title": "graphics",
+      "notice": "supplierApplication"
+    },
+    {
+      "file": "srf-fabawn.webp",
+      "group": "inspiration",
+      "title": "awnings",
+      "notice": "supplierApplication"
+    }
+  ]
+}
